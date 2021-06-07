@@ -1,0 +1,14 @@
+[2021-06-02 16:41:07] [INFO]    [OmnipathR] Initialized cache: `/Users/Aurelien/Library/Caches/OmnipathR`.
+[2021-06-02 16:41:07] [INFO]    [OmnipathR] Welcome to OmnipathR!
+[2021-06-02 16:42:30] [TRACE]   [OmnipathR] Loaded data from RDS `/Users/Aurelien/Library/Caches/OmnipathR/a6f560033dff45b503a8016c14c974c4c04b5967-1.rds`.
+[2021-06-02 16:42:30] [INFO]    [OmnipathR] Loaded from cache: `https://omnipathdb.org/enzsub?genesymbols=yes&organisms=9606&fields=sources,references,curation_effort&license=academic`
+[2021-06-02 16:42:31] [SUCCESS] [OmnipathR] Downloaded 39042 enzyme-substrate relationships.
+[2021-06-02 16:42:31] [TRACE]   [OmnipathR] Loaded data from RDS `/Users/Aurelien/Library/Caches/OmnipathR/a7b21d9d80a3837a50268df16d168128fc1c6ede-1.rds`.
+[2021-06-02 16:42:31] [INFO]    [OmnipathR] Loaded from cache: `https://omnipathdb.org/interactions?genesymbols=yes&datasets=omnipath&organisms=9606&fields=sources,references,curation_effort&license=academic`
+[2021-06-02 16:42:33] [SUCCESS] [OmnipathR] Downloaded 43729 interactions.
+[2021-06-02 16:45:04] [TRACE]   [OmnipathR] Loaded data from RDS `/Users/Aurelien/Library/Caches/OmnipathR/a6f560033dff45b503a8016c14c974c4c04b5967-1.rds`.
+[2021-06-02 16:45:04] [INFO]    [OmnipathR] Loaded from cache: `https://omnipathdb.org/enzsub?genesymbols=yes&organisms=9606&fields=sources,references,curation_effort&license=academic`
+[2021-06-02 16:45:05] [SUCCESS] [OmnipathR] Downloaded 39042 enzyme-substrate relationships.
+[2021-06-02 16:45:05] [TRACE]   [OmnipathR] Loaded data from RDS `/Users/Aurelien/Library/Caches/OmnipathR/a7b21d9d80a3837a50268df16d168128fc1c6ede-1.rds`.
+[2021-06-02 16:45:05] [INFO]    [OmnipathR] Loaded from cache: `https://omnipathdb.org/interactions?genesymbols=yes&datasets=omnipath&organisms=9606&fields=sources,references,curation_effort&license=academic`
+[2021-06-02 16:45:06] [SUCCESS] [OmnipathR] Downloaded 43729 interactions.
