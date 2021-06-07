@@ -1,13 +1,18 @@
 library(readr)
 library(viper)
-
+ 
+#/!\ /!\ /!\ /!\ /!\ /!\ /!\
+#Change the working directory to were you cloned the repository on your machine
 setwd("~/Dropbox/kinase_tf_mini_tuto/")
+#/!\ /!\ /!\ /!\ /!\ /!\ /!\
+
 source("script/viper_functions.R")
 
 ########## PHOSHO and KINASE part ########
 
 library(OmnipathR)
 
+#import the data
 phospho_differential_analysis <- as.data.frame(
   read_csv("data/phospho_differential_analysis.csv"))
 
