@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "Transcription factor and kinase activity analysis"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +8,105 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# About
+
+This is a short tutorial to show how to estimate transcription factor and kinase activities from transcriptomic and phosphoproteomic data, respectively. First, we load the packages and functions that we will use during the analysis
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(here)
+library(OmnipathR)
+library(dorothea)
+library(viper)
+library(workflowr)
+library(rmarkdown)
+library(org.Hs.eg.db)
+
+source(here("code/utils.R"))
+```
+
+
+# Kinase activity estimation
+
+Then, we load the results of the phosphoproteomic differential analysis (carried out previously) and format it properly. In addition, here we represent the top 10 up and down regulated phosphosites.
+
+```{r}
+phospho_differential_analysis <- read_csv(here("data/phospho_differential_analysis.csv")) %>%
+  tibble::column_to_rownames("psite_ID")
+
+plot_top_features(phospho_differential_analysis, n_top = 10) +
+  ggtitle('Phosphosite space')
+```
+
+Next, we can load the prior knowledge interactions, composed by kinase-target relationships
+
+```{r}
+omnipath_ptm <- OmnipathR::get_signed_ptms() %>%
+  dplyr::filter(modification %in% c("dephosphorylation","phosphorylation")) %>%
+  dplyr::mutate(p_site = paste0(substrate_genesymbol, "_", residue_type, residue_offset),
+                sign = ifelse(modification == "phosphorylation", 1, -1)) %>%
+  dplyr::transmute(p_site, enzyme_genesymbol, sign) %>%
+  as.data.frame() %>%
+  df_to_viper_regulon(.)
+```
+
+On a final step, we run viper to get the Kinase activities from the phosphoproteomic data. You can also run that on wour normalised intesity matrix of phosphosites directly, as long as it is formatted as a dataframe of similar format as here. User is strongly encouraged to check the viper publication ([PMID: 27322546](https://pubmed.ncbi.nlm.nih.gov/27322546/)) for more info on the algorithm here employed.
+
+```{r, message=FALSE, warning=FALSE, results = "hide"}
+kin_activity <- viper(eset = as.matrix(phospho_differential_analysis), 
+                      regulon = omnipath_ptm, 
+                      minsize = 5, 
+                      adaptive.size = FALSE, 
+                      eset.filter = FALSE)
+```
+
+```{r}
+plot_top_features(kin_activity, n_top = 10) +
+  ggtitle('Kinase space')
+```
+
+# Transcription factor activity
+
+First we import the dorothea regulons (using only confidence A, B, and C), see dorothea publication for information on confidence levels.
+
+```{r, warnings = FALSE}
+dorothea_viper <- dorothea_hs %>%
+  dplyr::filter(confidence %in% c("A", "B", "C")) %>%
+  dplyr::select(target, tf, mor) %>%
+  as.data.frame() %>%
+  df_to_viper_regulon(.)
+```
+
+Now we import the RNAseq data. It has entrez gene identifiers, but we need it to have gene symbols to match dorothea database, so we have to do some id conversion as well. Here we can also take a look to the top altered features.
+
+```{r}
+RNA_differential_analysis <- read_csv(here("data/RNA_differential_analysis.csv")) %>%
+  tibble::column_to_rownames("ID") %>%
+  dplyr::select(t) %>%
+  as.matrix() %>%
+  translateMatrixWithDb(mat = ., db = org.Hs.eg.db, 
+                                sourceKey = "ENTREZID", targetKey = "SYMBOL")
+
+plot_top_features(RNA_differential_analysis, n_top = 10) +
+  ggtitle('Transcriptomic space')
+```
+
+Now we estimate the TF activities using viper and visualize the top 10 altered TFs
+
+```{r, message=FALSE, warning=FALSE, results="hide"}
+TF_activities <- viper(eset = RNA_differential_analysis, 
+                       regulon = dorothea_viper, 
+                       minsize = 10, adaptive.size = FALSE, 
+                       eset.filter = FALSE, pleiotropy = TRUE)
+```
+
+```{r}
+plot_top_features(TF_activities, n_top = 10) +
+  ggtitle('TF space')
+```
+
+# Next steps
+
+Now you have succefully estimated kinase and TF activities from phosphoproteomic and transcriptomic. You can now combine them together and use them as input for COSMOS. You may also leave them separated and use them a separated input and measurments in cosmos, if you lack metabolomic data
+
+See https://github.com/saezlab/cosmosR for more info on how to use cosmos
