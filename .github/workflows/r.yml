@@ -46,5 +46,5 @@ jobs:
           r-version: ${{ matrix.config.r }}
           
       - name: Extract and run code
-        run: code/reproduce_analysis.R
-        shell: Rscript {0}
+        run: Rscript code/reproduce_analysis.R
+      
