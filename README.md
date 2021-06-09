@@ -1,7 +1,10 @@
-# kinase_tf_mini_tuto
+# Kinase and TF mini tutorial
 
-This is a short tutorial to show in parallel how to estimate TF and kinase activities from transcriptomic and phosphoproteomic data
+To reproduce the analysis, please run the following lines in a terminal with R installed:
 
-Follow the kinase_tf_minituto.R script in the script folder
 
-you may need to install packages as well to run the script: viper, omnipathR and dorothea
+
+
+A [workflowr][] project.
+
+[workflowr]: https://github.com/jdblischak/workflowr

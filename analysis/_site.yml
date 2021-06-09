@@ -1,14 +1,15 @@
-name: "kinase_tf_mini_tuto"
+name: "kinase_tf_mini_tutorial"
 output_dir: ../docs
 navbar:
-  title: "kinase_tf_mini_tuto"
+  title: "Kinase and TF activity estimation"
   left:
-  - text: Home
+  - icon: fa-chart-bar
+    text: Minitutorial
     href: index.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
+  right:
+  - icon: fa-code
+    text: Source code
+    href: https://github.com/saezlab/kinase_tf_mini_tuto
 output:
   workflowr::wflow_html:
     toc: yes
