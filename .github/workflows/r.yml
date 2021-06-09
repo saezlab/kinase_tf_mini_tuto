@@ -13,20 +13,38 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+    
 jobs:
-  build:
-    runs-on: macOS-latest
+  build-check:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    container: ${{ matrix.config.cont }}
+
     strategy:
+      fail-fast: false
       matrix:
-        r-version: [4.0]
+        config:
+          - { os: ubuntu-latest, r: '4.1', bioc: '3.13', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
+          - { os: macOS-latest, r: '4.1', bioc: '3.13'}
+          - { os: windows-latest, r: '4.1', bioc: '3.13'}
+    
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      RSPM: ${{ matrix.config.rspm }}
+      NOT_CRAN: true
+      TZ: UTC
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up R ${{ matrix.r-version }}
-        uses: r-lib/actions/setup-r@ffe45a39586f073cc2e9af79c4ba563b657dc6e3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup R from r-lib
+        uses: r-lib/actions/setup-r@master
         with:
-          r-version: ${{ matrix.r-version }}
+          r-version: ${{ matrix.config.r }}
+          
       - name: Extract and run code
         run: code/reproduce_analysis.R
         shell: Rscript {0}
