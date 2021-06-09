@@ -1,5 +1,7 @@
 # Kinase and TF mini tutorial
 
+[![R](https://github.com/saezlab/kinase_tf_mini_tuto/actions/workflows/r.yml/badge.svg)](https://github.com/saezlab/kinase_tf_mini_tuto/actions/workflows/r.yml)
+
 To reproduce the analysis, please run the following lines in a terminal with R installed:
 
 ```
