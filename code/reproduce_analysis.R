@@ -1,5 +1,8 @@
 if( !require('renv') ) {
   install.packages('renv')
 }
+if( !require('workflowr') ) {
+  install.packages('workflowr')
+}
 renv::restore()
-wflow_build('analysis/index.Rmd')
+workflowr::wflow_build('analysis/index.Rmd')
