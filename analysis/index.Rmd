@@ -60,13 +60,11 @@ On a final step, we run viper to get the Kinase activities from the phosphoprote
 
 ```{r, message=FALSE, warning=FALSE, results = "hide"}
 #rename KSN to fit decoupler format
-names(KSN)[c(1,2)] <- c("target","tf")
+names(omnipath_ptm)[c(1,2)] <- c("target","tf")
 
-kin_activity <- run_mean(mat = as.matrix(phospho_differential_analysis),network = KSN, times = 1000)
-kin_activity <- kin_activity[kin_activity$statistic == "normalized_mean",c(2,4,5)]
-
-row.names(kin_activity) <- kin_activity[,1]
-kin_activity <- kin_activity[,-1]
+kin_activity <- run_mean(mat = as.matrix(phospho_differential_analysis),network = omnipath_ptm, times = 1000)
+kin_activity <- kin_activity[kin_activity$statistic == "normalized_mean",c(2,4)] %>%
+  tibble::column_to_rownames(var = "tf")
 ```
 
 ```{r}
@@ -97,6 +95,7 @@ RNA_differential_analysis <- read_csv(here("data/RNA_differential_analysis.csv")
   translateMatrixWithDb(mat = ., db = org.Hs.eg.db, 
                                 sourceKey = "ENTREZID", targetKey = "SYMBOL")
 
+
 plot_top_features(RNA_differential_analysis, n_top = 10) +
   ggtitle('Transcriptomic space')
 ```
@@ -105,9 +104,10 @@ Now we estimate the TF activities using run_mean from decoupleR and visualize th
 
 ```{r, message=FALSE, warning=FALSE, results="hide"}
 TF_activities <- as.data.frame(run_mean(mat = as.matrix(RNA_differential_analysis), network = dorothea_df, times = 1000))
-TF_activities <- TF_activities[TF_activities$statistic == "normalized_mean",c(2,4,5)]
-row.names(TF_activities) <- TF_activities[,1]
-TF_activities <- TF_activities[,-1]
+TF_activities <- TF_activities %>%
+  dplyr::filter(statistic == "normalized_mean") %>%
+  dplyr::select(tf, score) %>%
+  tibble::column_to_rownames(var = "tf")
 ```
 
 ```{r}
