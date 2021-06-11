@@ -17,7 +17,7 @@ library(tidyverse)
 library(here)
 library(OmnipathR)
 library(dorothea)
-library(viper)
+library(decoupleR)
 library(workflowr)
 library(rmarkdown)
 library(org.Hs.eg.db)
@@ -44,20 +44,27 @@ Next, we can load the prior knowledge interactions, composed by kinase-target re
 omnipath_ptm <- OmnipathR::get_signed_ptms() %>%
   dplyr::filter(modification %in% c("dephosphorylation","phosphorylation")) %>%
   dplyr::mutate(p_site = paste0(substrate_genesymbol, "_", residue_type, residue_offset),
-                sign = ifelse(modification == "phosphorylation", 1, -1)) %>%
-  dplyr::transmute(p_site, enzyme_genesymbol, sign) %>%
-  as.data.frame() %>%
-  df_to_viper_regulon(.)
+                mor = ifelse(modification == "phosphorylation", 1, -1)) %>%
+  dplyr::transmute(p_site, enzyme_genesymbol, mor) %>%
+  as.data.frame()
+
+omnipath_ptm$likelihood <- 1
+
+#we remove ambiguous modes of regulations
+omnipath_ptm$id <- paste(omnipath_ptm$p_site,omnipath_ptm$enzyme_genesymbol,sep ="")
+omnipath_ptm <- omnipath_ptm[!duplicated(omnipath_ptm$id),]
+omnipath_ptm <- omnipath_ptm[,-5]
 ```
 
 On a final step, we run viper to get the Kinase activities from the phosphoproteomic data. You can also run that on wour normalised intesity matrix of phosphosites directly, as long as it is formatted as a dataframe of similar format as here. User is strongly encouraged to check the viper publication ([PMID: 27322546](https://pubmed.ncbi.nlm.nih.gov/27322546/)) for more info on the algorithm here employed.
 
 ```{r, message=FALSE, warning=FALSE, results = "hide"}
-kin_activity <- viper(eset = as.matrix(phospho_differential_analysis), 
-                      regulon = omnipath_ptm, 
-                      minsize = 5, 
-                      adaptive.size = FALSE, 
-                      eset.filter = FALSE)
+#rename KSN to fit decoupler format
+names(omnipath_ptm)[c(1,2)] <- c("target","tf")
+
+kin_activity <- run_mean(mat = as.matrix(phospho_differential_analysis),network = omnipath_ptm, times = 1000)
+kin_activity <- kin_activity[kin_activity$statistic == "normalized_mean",c(2,4)] %>%
+  tibble::column_to_rownames(var = "tf")
 ```
 
 ```{r}
@@ -70,11 +77,12 @@ plot_top_features(kin_activity, n_top = 10) +
 First we import the dorothea regulons (using only confidence A, B, and C), see dorothea publication for information on confidence levels.
 
 ```{r, warnings = FALSE}
-dorothea_viper <- dorothea_hs %>%
+dorothea_df <- dorothea_hs %>%
   dplyr::filter(confidence %in% c("A", "B", "C")) %>%
   dplyr::select(target, tf, mor) %>%
-  as.data.frame() %>%
-  df_to_viper_regulon(.)
+  as.data.frame()
+
+dorothea_df$likelihood <- 1
 ```
 
 Now we import the RNAseq data. It has entrez gene identifiers, but we need it to have gene symbols to match dorothea database, so we have to do some id conversion as well. Here we can also take a look to the top altered features.
@@ -87,17 +95,19 @@ RNA_differential_analysis <- read_csv(here("data/RNA_differential_analysis.csv")
   translateMatrixWithDb(mat = ., db = org.Hs.eg.db, 
                                 sourceKey = "ENTREZID", targetKey = "SYMBOL")
 
+
 plot_top_features(RNA_differential_analysis, n_top = 10) +
   ggtitle('Transcriptomic space')
 ```
 
-Now we estimate the TF activities using viper and visualize the top 10 altered TFs
+Now we estimate the TF activities using run_mean from decoupleR and visualize the top 10 altered TFs
 
 ```{r, message=FALSE, warning=FALSE, results="hide"}
-TF_activities <- viper(eset = RNA_differential_analysis, 
-                       regulon = dorothea_viper, 
-                       minsize = 10, adaptive.size = FALSE, 
-                       eset.filter = FALSE, pleiotropy = TRUE)
+TF_activities <- as.data.frame(run_mean(mat = as.matrix(RNA_differential_analysis), network = dorothea_df, times = 1000))
+TF_activities <- TF_activities %>%
+  dplyr::filter(statistic == "normalized_mean") %>%
+  dplyr::select(tf, score) %>%
+  tibble::column_to_rownames(var = "tf")
 ```
 
 ```{r}
