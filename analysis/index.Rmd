@@ -56,7 +56,7 @@ omnipath_ptm <- omnipath_ptm[!duplicated(omnipath_ptm$id),]
 omnipath_ptm <- omnipath_ptm[,-5]
 ```
 
-On a final step, we run viper to get the Kinase activities from the phosphoproteomic data. You can also run that on wour normalised intesity matrix of phosphosites directly, as long as it is formatted as a dataframe of similar format as here. User is strongly encouraged to check the viper publication ([PMID: 27322546](https://pubmed.ncbi.nlm.nih.gov/27322546/)) for more info on the algorithm here employed.
+On a final step, we run viper to get the Kinase activities from the phosphoproteomic data. You can also run that on wour normalised intesity matrix of phosphosites directly, as long as it is formatted as a dataframe of similar format as here. User is strongly encouraged to check https://github.com/saezlab/decoupleR for more info on the algorithm here employed.
 
 ```{r, message=FALSE, warning=FALSE, results = "hide"}
 #rename KSN to fit decoupler format
