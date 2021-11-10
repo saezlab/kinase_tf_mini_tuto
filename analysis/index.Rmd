@@ -25,7 +25,6 @@ library(org.Hs.eg.db)
 source(here("code/utils.R"))
 ```
 
-
 # Kinase activity estimation
 
 Then, we load the results of the phosphoproteomic differential analysis (carried out previously) and format it properly. In addition, here we represent the top 10 up and down regulated phosphosites.
@@ -62,9 +61,14 @@ On a final step, we run viper to get the Kinase activities from the phosphoprote
 #rename KSN to fit decoupler format
 names(omnipath_ptm)[c(1,2)] <- c("target","tf")
 
-kin_activity <- run_mean(mat = as.matrix(phospho_differential_analysis),network = omnipath_ptm, times = 1000)
-kin_activity <- kin_activity[kin_activity$statistic == "normalized_mean",c(2,4)] %>%
-  tibble::column_to_rownames(var = "tf")
+kin_activity <- run_wmean(
+  mat = as.matrix(phospho_differential_analysis), 
+  network = omnipath_ptm, 
+  .source = "tf",
+  times = 1000
+)
+kin_activity <- kin_activity[kin_activity$statistic == "norm_wmean",c(2,4)] %>%
+  tibble::column_to_rownames(var = "source")
 ```
 
 ```{r}
@@ -103,11 +107,13 @@ plot_top_features(RNA_differential_analysis, n_top = 10) +
 Now we estimate the TF activities using run_mean from decoupleR and visualize the top 10 altered TFs
 
 ```{r, message=FALSE, warning=FALSE, results="hide"}
-TF_activities <- as.data.frame(run_mean(mat = as.matrix(RNA_differential_analysis), network = dorothea_df, times = 1000))
+TF_activities <- as.data.frame(run_wmean(mat = as.matrix(RNA_differential_analysis), 
+                                         network = dorothea_df, .source = "tf",
+                                         times = 1000))
 TF_activities <- TF_activities %>%
-  dplyr::filter(statistic == "normalized_mean") %>%
-  dplyr::select(tf, score) %>%
-  tibble::column_to_rownames(var = "tf")
+  dplyr::filter(statistic == "norm_wmean") %>%
+  dplyr::select(source, score) %>%
+  tibble::column_to_rownames(var = "source")
 ```
 
 ```{r}
