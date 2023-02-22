@@ -78,11 +78,13 @@ plot_top_features(kin_activity, n_top = 10) +
 
 # Transcription factor activity
 
-First we import the dorothea regulons (using only confidence A, B, and C), see dorothea publication for information on confidence levels.
+First we import the dorothea regulons (using only confidence A, B, and C), which is a comprehensive resource containing a curated collection of TFs and their transcriptional targets (see dorothea publication for information on confidence levels). Here we will use decoupleR to retrieve it from OmniPath:
 
 ```{r, warnings = FALSE}
+dorothea_hs <- decoupleR::get_dorothea(organism='human', levels=c('A', 'B', 'C'))
+
 dorothea_df <- dorothea_hs %>%
-  dplyr::filter(confidence %in% c("A", "B", "C")) %>%
+  dplyr::rename("tf"="source") %>%
   dplyr::select(target, tf, mor) %>%
   as.data.frame()
 
