@@ -13,7 +13,7 @@
 
 <title>Transcription factor and kinase activity analysis</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -35,7 +35,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -72,6 +72,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -92,6 +93,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -244,7 +248,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -278,14 +282,17 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Transcription factor and kinase activity analysis</h1>
+<h1 class="title toc-ignore">Transcription factor and kinase activity
+analysis</h1>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -294,7 +301,9 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -303,17 +312,27 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-10
+<strong>Last updated:</strong> 2023-03-30
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>kinase_tf_mini_tuto/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>kinase_tf_mini_tuto/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -322,103 +341,162 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210608code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210608)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210608code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20210608)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20210608code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20210608code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20210608)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20210608)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
 <div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaezlabkinasetfminitutotreec6e40827d21a17914099b9b34a182d02c6e17881targetblankc6e4082a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saezlab/kinase_tf_mini_tuto/tree/c6e40827d21a17914099b9b34a182d02c6e17881" target="_blank">c6e4082</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaezlabkinasetfminitutotree87df89d8603ef2963f188bbcd8405a982820fa2btargetblank87df89da">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/tree/87df89d8603ef2963f188bbcd8405a982820fa2b" target="_blank">87df89d</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaezlabkinasetfminitutotreec6e40827d21a17914099b9b34a182d02c6e17881targetblankc6e4082a" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomsaezlabkinasetfminitutotree87df89d8603ef2963f188bbcd8405a982820fa2btargetblank87df89da"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/saezlab/kinase_tf_mini_tuto/tree/c6e40827d21a17914099b9b34a182d02c6e17881" target="_blank">c6e4082</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/tree/87df89d8603ef2963f188bbcd8405a982820fa2b" target="_blank">87df89d</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    omnipathr-log/
-    Ignored:    renv/library/
-    Ignored:    renv/staging/
+
+Unstaged changes:
+    Deleted:    .Rhistory
+    Deleted:    .Rprofile
+    Deleted:    .github/workflows/r.yml
+    Modified:   README.md
+    Deleted:    code/README.md
+    Deleted:    code/reproduce_analysis.R
+    Deleted:    data/README.md
+    Deleted:    renv.lock
+    Deleted:    renv/.gitignore
+    Deleted:    renv/activate.R
+    Deleted:    renv/settings.dcf
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -429,7 +507,11 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
+(<code>docs/index.html</code>) files. If you’ve configured a remote Git
+repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
+in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -453,6 +535,74 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/87df89d8603ef2963f188bbcd8405a982820fa2b/analysis/index.Rmd" target="_blank">87df89d</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2023-03-30
+</td>
+<td>
+workflowr::wflow_publish("analysis/index.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/354fbec0ec0d755426510c2f2c2be243ede52621/analysis/index.Rmd" target="_blank">354fbec</a>
+</td>
+<td>
+Christina Schmidt
+</td>
+<td>
+2023-02-22
+</td>
+<td>
+add publication link
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/8d6eab14b4cd00325641b4ab011e933704fcdacf/analysis/index.Rmd" target="_blank">8d6eab1</a>
+</td>
+<td>
+Christina Schmidt
+</td>
+<td>
+2023-02-22
+</td>
+<td>
+Use decoupleR::get_dorothea() to load regulons
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saezlab/kinase_tf_mini_tuto/2c76afc1d91dae087dd2d91c6346cd402a27fcc7/docs/index.html" target="_blank">2c76afc</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2021-11-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -535,7 +685,7 @@ Martin Garrido Rodriguez-Cordoba
 2021-06-11
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -632,7 +782,10 @@ Start workflowr project.
 </div>
 <div id="about" class="section level1">
 <h1>About</h1>
-<p>This is a short tutorial to show how to estimate transcription factor and kinase activities from transcriptomic and phosphoproteomic data, respectively. First, we load the packages and functions that we will use during the analysis</p>
+<p>This is a short tutorial to show how to estimate transcription factor
+and kinase activities from transcriptomic and phosphoproteomic data,
+respectively. First, we load the packages and functions that we will use
+during the analysis</p>
 <pre class="r"><code>library(tidyverse)
 library(here)
 library(OmnipathR)
@@ -646,15 +799,17 @@ source(here(&quot;code/utils.R&quot;))</code></pre>
 </div>
 <div id="kinase-activity-estimation" class="section level1">
 <h1>Kinase activity estimation</h1>
-<p>Then, we load the results of the phosphoproteomic differential analysis (carried out previously) and format it properly. In addition, here we represent the top 10 up and down regulated phosphosites.</p>
+<p>Then, we load the results of the phosphoproteomic differential
+analysis (carried out previously) and format it properly. In addition,
+here we represent the top 10 up and down regulated phosphosites.</p>
 <pre class="r"><code>phospho_differential_analysis &lt;- read_csv(here(&quot;data/phospho_differential_analysis.csv&quot;)) %&gt;%
   tibble::column_to_rownames(&quot;psite_ID&quot;)</code></pre>
-<pre><code>Rows: 14243 Columns: 2</code></pre>
-<pre><code>── Column specification ────────────────────────────────────────────────────────
+<pre><code>Rows: 14243 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr (1): psite_ID
-dbl (1): t_value_tumor_vs_healthy</code></pre>
-<pre><code>
+dbl (1): t_value_tumor_vs_healthy
+
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>plot_top_features(phospho_differential_analysis, n_top = 10) +
@@ -684,6 +839,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/2c76afc1d91dae087dd2d91c6346cd402a27fcc7/docs/figure/index.Rmd/unnamed-chunk-2-1.png" target="_blank">2c76afc</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/8e3f301b45560a0a816ec8b8e1b3b065175c8f57/docs/figure/index.Rmd/unnamed-chunk-2-1.png" target="_blank">8e3f301</a>
 </td>
 <td>
@@ -697,7 +863,8 @@ Martin Garrido Rodriguez-Cordoba
 </table>
 </div>
 </div>
-<p>Next, we can load the prior knowledge interactions, composed by kinase-target relationships</p>
+<p>Next, we can load the prior knowledge interactions, composed by
+kinase-target relationships</p>
 <pre class="r"><code>omnipath_ptm &lt;- OmnipathR::get_signed_ptms() %&gt;%
   dplyr::filter(modification %in% c(&quot;dephosphorylation&quot;,&quot;phosphorylation&quot;)) %&gt;%
   dplyr::mutate(p_site = paste0(substrate_genesymbol, &quot;_&quot;, residue_type, residue_offset),
@@ -708,10 +875,16 @@ Martin Garrido Rodriguez-Cordoba
 omnipath_ptm$likelihood &lt;- 1
 
 #we remove ambiguous modes of regulations
-omnipath_ptm$id &lt;- paste(omnipath_ptm$p_site,omnipath_ptm$enzyme_genesymbol,sep =&quot;&quot;)
+omnipath_ptm$id &lt;- paste(omnipath_ptm$p_site,omnipath_ptm$enzyme_genesymbol, sep =&quot;&quot;)
 omnipath_ptm &lt;- omnipath_ptm[!duplicated(omnipath_ptm$id),]
 omnipath_ptm &lt;- omnipath_ptm[,-5]</code></pre>
-<p>On a final step, we run viper to get the Kinase activities from the phosphoproteomic data. You can also run that on wour normalised intesity matrix of phosphosites directly, as long as it is formatted as a dataframe of similar format as here. User is strongly encouraged to check <a href="https://github.com/saezlab/decoupleR" class="uri">https://github.com/saezlab/decoupleR</a> for more info on the algorithm here employed.</p>
+<p>On a final step, we run viper to get the Kinase activities from the
+phosphoproteomic data. You can also run that on wour normalised intesity
+matrix of phosphosites directly, as long as it is formatted as a
+dataframe of similar format as here. User is strongly encouraged to
+check <a href="https://github.com/saezlab/decoupleR"
+class="uri">https://github.com/saezlab/decoupleR</a> for more info on
+the algorithm here employed.</p>
 <pre class="r"><code>#rename KSN to fit decoupler format
 names(omnipath_ptm)[c(1,2)] &lt;- c(&quot;target&quot;,&quot;tf&quot;)
 
@@ -750,6 +923,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/2c76afc1d91dae087dd2d91c6346cd402a27fcc7/docs/figure/index.Rmd/unnamed-chunk-5-1.png" target="_blank">2c76afc</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/87802faea4e733484acf7516dca8e86a6b365f18/docs/figure/index.Rmd/unnamed-chunk-5-1.png" target="_blank">87802fa</a>
 </td>
 <td>
@@ -777,36 +961,48 @@ Martin Garrido Rodriguez-Cordoba
 </div>
 <div id="transcription-factor-activity" class="section level1">
 <h1>Transcription factor activity</h1>
-<p>First we import the dorothea regulons (using only confidence A, B, and C), see dorothea publication for information on confidence levels.</p>
-<pre class="r"><code>dorothea_df &lt;- dorothea_hs %&gt;%
-  dplyr::filter(confidence %in% c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)) %&gt;%
+<p>First we import the dorothea regulons (using only confidence A, B,
+and C), see <a
+href="https://genome.cshlp.org/content/29/8/1363">dorothea
+publication</a> for information on confidence levels. Here we will use
+decoupleR to retrieve dorothea from OmniPath:</p>
+<pre class="r"><code>dorothea_hs &lt;- decoupleR::get_dorothea(organism=&#39;human&#39;, levels=c(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;))
+
+dorothea_df &lt;- dorothea_hs %&gt;%
+  dplyr::rename(&quot;tf&quot;=&quot;source&quot;) %&gt;%
   dplyr::select(target, tf, mor) %&gt;%
   as.data.frame()
 
 dorothea_df$likelihood &lt;- 1</code></pre>
-<p>Now we import the RNAseq data. It has entrez gene identifiers, but we need it to have gene symbols to match dorothea database, so we have to do some id conversion as well. Here we can also take a look to the top altered features.</p>
+<p>Now we import the RNAseq data. It has entrez gene identifiers, but we
+need it to have gene symbols to match dorothea database, so we have to
+do some id conversion as well. Here we can also take a look to the top
+altered features.</p>
 <pre class="r"><code>RNA_differential_analysis &lt;- read_csv(here(&quot;data/RNA_differential_analysis.csv&quot;)) %&gt;%
   tibble::column_to_rownames(&quot;ID&quot;) %&gt;%
   dplyr::select(t) %&gt;%
   as.matrix() %&gt;%
   translateMatrixWithDb(mat = ., db = org.Hs.eg.db, 
                                 sourceKey = &quot;ENTREZID&quot;, targetKey = &quot;SYMBOL&quot;)</code></pre>
-<pre><code>Rows: 15919 Columns: 7</code></pre>
-<pre><code>── Column specification ────────────────────────────────────────────────────────
+<pre><code>Rows: 15919 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
-dbl (7): ID, logFC, AveExpr, t, P.Value, adj.P.Val, B</code></pre>
-<pre><code>
+dbl (7): ID, logFC, AveExpr, t, P.Value, adj.P.Val, B
+
 ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre><code>&#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
-<pre><code>------------------------------------------------</code></pre>
-<pre><code>No input summarise function detected, using first match on multi-mapping situations.</code></pre>
-<pre><code>------------------------------------------------
-153 of 15919 input ids on the translator data frame could not be mapped.
-0 of 15919 input ids on the translator data frame were mapped to 2 or more target ids.
-0 of 15766 target ids on the translator data frame were mapped to 2 or more input ids.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&#39;select()&#39; returned 1:1 mapping between keys and columns
+
 ------------------------------------------------
-Input keys were finally mapped to 15766 target ids.
+
+No input summarise function detected, using first match on multi-mapping situations.
+
+------------------------------------------------
+154 of 15919 input ids on the translator data frame could not be mapped.
+0 of 15919 input ids on the translator data frame were mapped to 2 or more target ids.
+0 of 15765 target ids on the translator data frame were mapped to 2 or more input ids.
+------------------------------------------------
+Input keys were finally mapped to 15765 target ids.
 ------------------------------------------------</code></pre>
 <pre class="r"><code>plot_top_features(RNA_differential_analysis, n_top = 10) +
   ggtitle(&#39;Transcriptomic space&#39;)</code></pre>
@@ -835,6 +1031,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/2c76afc1d91dae087dd2d91c6346cd402a27fcc7/docs/figure/index.Rmd/unnamed-chunk-7-1.png" target="_blank">2c76afc</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/87802faea4e733484acf7516dca8e86a6b365f18/docs/figure/index.Rmd/unnamed-chunk-7-1.png" target="_blank">87802fa</a>
 </td>
 <td>
@@ -859,7 +1066,8 @@ Martin Garrido Rodriguez-Cordoba
 </table>
 </div>
 </div>
-<p>Now we estimate the TF activities using run_mean from decoupleR and visualize the top 10 altered TFs</p>
+<p>Now we estimate the TF activities using run_mean from decoupleR and
+visualize the top 10 altered TFs</p>
 <pre class="r"><code>TF_activities &lt;- as.data.frame(run_wmean(mat = as.matrix(RNA_differential_analysis), 
                                          network = dorothea_df, .source = &quot;tf&quot;,
                                          times = 1000))
@@ -894,6 +1102,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/2c76afc1d91dae087dd2d91c6346cd402a27fcc7/docs/figure/index.Rmd/unnamed-chunk-9-1.png" target="_blank">2c76afc</a>
+</td>
+<td>
+Martin Garrido Rodriguez-Cordoba
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/saezlab/kinase_tf_mini_tuto/blob/87802faea4e733484acf7516dca8e86a6b365f18/docs/figure/index.Rmd/unnamed-chunk-9-1.png" target="_blank">87802fa</a>
 </td>
 <td>
@@ -921,98 +1140,88 @@ Martin Garrido Rodriguez-Cordoba
 </div>
 <div id="next-steps" class="section level1">
 <h1>Next steps</h1>
-<p>Now you have succefully estimated kinase and TF activities from phosphoproteomic and transcriptomic. You can now combine them together and use them as input for COSMOS. You may also leave them separated and use them a separated input and measurments in cosmos, if you lack metabolomic data</p>
-<p>See <a href="https://github.com/saezlab/cosmosR" class="uri">https://github.com/saezlab/cosmosR</a> for more info on how to use cosmos</p>
+<p>Now you have succefully estimated kinase and TF activities from
+phosphoproteomic and transcriptomic. You can now combine them together
+and use them as input for COSMOS. You may also leave them separated and
+use them a separated input and measurments in cosmos, if you lack
+metabolomic data</p>
+<p>See <a href="https://github.com/saezlab/cosmosR"
+class="uri">https://github.com/saezlab/cosmosR</a> for more info on how
+to use cosmos</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.1 (2021-08-10)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur 10.16
+Running under: macOS Big Sur ... 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices datasets  utils    
-[8] methods   base     
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
- [1] org.Hs.eg.db_3.14.0  AnnotationDbi_1.56.1 IRanges_2.26.0      
- [4] S4Vectors_0.30.2     Biobase_2.52.0       BiocGenerics_0.38.0 
- [7] rmarkdown_2.11       decoupleR_2.1.0      dorothea_1.6.0      
-[10] OmnipathR_3.2.0      here_1.0.1           forcats_0.5.1       
-[13] stringr_1.4.0        dplyr_1.0.7          purrr_0.3.4         
-[16] readr_2.0.2          tidyr_1.1.4          tibble_3.1.6        
-[19] ggplot2_3.3.5        tidyverse_1.3.1      workflowr_1.6.2     
+ [1] org.Hs.eg.db_3.15.0  AnnotationDbi_1.58.0 IRanges_2.30.0      
+ [4] S4Vectors_0.34.0     Biobase_2.56.0       BiocGenerics_0.42.0 
+ [7] rmarkdown_2.14       workflowr_1.7.0      decoupleR_2.3.2     
+[10] dorothea_1.8.0       OmnipathR_3.4.0      here_1.0.1          
+[13] forcats_0.5.1        stringr_1.4.0        dplyr_1.0.9         
+[16] purrr_0.3.4          readr_2.1.2          tidyr_1.2.0         
+[19] tibble_3.1.8         ggplot2_3.3.6        tidyverse_1.3.2     
 
 loaded via a namespace (and not attached):
-  [1] colorspace_2.0-2            ellipsis_0.3.2             
-  [3] rprojroot_2.0.2             XVector_0.32.0             
-  [5] GenomicRanges_1.44.0        fs_1.5.0                   
-  [7] rstudioapi_0.13             farver_2.1.0               
-  [9] bit64_4.0.5                 fansi_0.5.0                
- [11] lubridate_1.8.0             ranger_0.13.1              
- [13] xml2_1.3.2                  RobustRankAggreg_1.1       
- [15] cachem_1.0.6                knitr_1.36                 
- [17] jsonlite_1.7.2              speedglm_0.3-3             
- [19] bcellViper_1.30.0           broom_0.7.10               
- [21] dbplyr_2.1.1                png_0.1-7                  
- [23] compiler_4.1.1              httr_1.4.2                 
- [25] backports_1.3.0             assertthat_0.2.1           
- [27] Matrix_1.3-4                fastmap_1.1.0              
- [29] cli_3.1.0                   later_1.3.0                
- [31] htmltools_0.5.2             prettyunits_1.1.1          
- [33] tools_4.1.1                 igraph_1.2.8               
- [35] gtable_0.3.0                glue_1.5.0                 
- [37] GenomeInfoDbData_1.2.6      rappdirs_0.3.3             
- [39] Rcpp_1.0.7                  cellranger_1.1.0           
- [41] jquerylib_0.1.4             Biostrings_2.60.2          
- [43] vctrs_0.3.8                 xfun_0.28                  
- [45] rvest_1.0.2                 lifecycle_1.0.1            
- [47] renv_0.13.2                 zlibbioc_1.38.0            
- [49] MASS_7.3-54                 scales_1.1.1               
- [51] vroom_1.5.5                 hms_1.1.1                  
- [53] promises_1.2.0.1            MatrixGenerics_1.4.3       
- [55] SummarizedExperiment_1.22.0 yaml_2.2.1                 
- [57] curl_4.3.2                  memoise_2.0.0              
- [59] sass_0.4.0                  rpart_4.1-15               
- [61] stringi_1.7.5               RSQLite_2.2.8              
- [63] highr_0.9                   checkmate_2.0.0            
- [65] GenomeInfoDb_1.28.4         rlang_0.4.12               
- [67] pkgconfig_2.0.3             matrixStats_0.61.0         
- [69] bitops_1.0-7                evaluate_0.14              
- [71] lattice_0.20-45             labeling_0.4.2             
- [73] bit_4.0.4                   tidyselect_1.1.1           
- [75] logger_0.2.2                magrittr_2.0.1             
- [77] R6_2.5.1                    generics_0.1.1             
- [79] DelayedArray_0.18.0         DBI_1.1.1                  
- [81] pillar_1.6.4                haven_2.4.3                
- [83] whisker_0.4                 withr_2.4.2                
- [85] KEGGREST_1.32.0             RCurl_1.98-1.5             
- [87] modelr_0.1.8                crayon_1.4.2               
- [89] utf8_1.2.2                  tzdb_0.2.0                 
- [91] progress_1.2.2              grid_4.1.1                 
- [93] readxl_1.3.1                blob_1.2.2                 
- [95] git2r_0.28.0                reprex_2.0.1               
- [97] digest_0.6.28               httpuv_1.6.3               
- [99] munsell_0.5.0               bslib_0.3.1                </code></pre>
+ [1] googledrive_2.0.0      colorspace_2.0-3       ellipsis_0.3.2        
+ [4] rprojroot_2.0.3        XVector_0.36.0         fs_1.5.2              
+ [7] rstudioapi_0.13        farver_2.1.1           bit64_4.0.5           
+[10] fansi_1.0.3            lubridate_1.8.0        xml2_1.3.3            
+[13] cachem_1.0.6           knitr_1.39             jsonlite_1.8.0        
+[16] bcellViper_1.32.0      broom_1.0.0            dbplyr_2.2.1          
+[19] png_0.1-7              compiler_4.2.1         httr_1.4.3            
+[22] backports_1.4.1        assertthat_0.2.1       Matrix_1.5-1          
+[25] fastmap_1.1.0          gargle_1.2.0           cli_3.3.0             
+[28] later_1.3.0            htmltools_0.5.3        prettyunits_1.1.1     
+[31] tools_4.2.1            igraph_1.3.4           gtable_0.3.0          
+[34] glue_1.6.2             GenomeInfoDbData_1.2.8 rappdirs_0.3.3        
+[37] Rcpp_1.0.9             cellranger_1.1.0       jquerylib_0.1.4       
+[40] vctrs_0.4.1            Biostrings_2.64.0      xfun_0.31             
+[43] ps_1.7.1               rvest_1.0.2            lifecycle_1.0.1       
+[46] googlesheets4_1.0.0    zlibbioc_1.42.0        getPass_0.2-2         
+[49] scales_1.2.0           vroom_1.5.7            hms_1.1.1             
+[52] promises_1.2.0.1       parallel_4.2.1         yaml_2.3.5            
+[55] curl_4.3.2             memoise_2.0.1          sass_0.4.2            
+[58] stringi_1.7.8          RSQLite_2.2.15         highr_0.9             
+[61] checkmate_2.1.0        GenomeInfoDb_1.32.2    rlang_1.0.6           
+[64] pkgconfig_2.0.3        bitops_1.0-7           evaluate_0.15         
+[67] lattice_0.20-45        labeling_0.4.2         bit_4.0.4             
+[70] processx_3.7.0         tidyselect_1.1.2       logger_0.2.2          
+[73] magrittr_2.0.3         R6_2.5.1               generics_0.1.3        
+[76] DBI_1.1.3              pillar_1.8.0           haven_2.5.0           
+[79] whisker_0.4            withr_2.5.0            KEGGREST_1.36.3       
+[82] RCurl_1.98-1.8         modelr_0.1.8           crayon_1.5.1          
+[85] utf8_1.2.2             tzdb_0.3.0             progress_1.2.2        
+[88] grid_4.2.1             readxl_1.4.0           blob_1.2.3            
+[91] callr_3.7.1            git2r_0.31.0           reprex_2.0.1          
+[94] digest_0.6.29          httpuv_1.6.5           munsell_0.5.0         
+[97] bslib_0.4.0           </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
