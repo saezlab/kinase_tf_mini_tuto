@@ -50,7 +50,7 @@ omnipath_ptm <- OmnipathR::get_signed_ptms() %>%
 omnipath_ptm$likelihood <- 1
 
 #we remove ambiguous modes of regulations
-omnipath_ptm$id <- paste(omnipath_ptm$p_site,omnipath_ptm$enzyme_genesymbol,sep ="")
+omnipath_ptm$id <- paste(omnipath_ptm$p_site,omnipath_ptm$enzyme_genesymbol, sep ="")
 omnipath_ptm <- omnipath_ptm[!duplicated(omnipath_ptm$id),]
 omnipath_ptm <- omnipath_ptm[,-5]
 ```
