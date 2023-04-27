@@ -40,12 +40,18 @@ plot_top_features(phospho_differential_analysis, n_top = 10) +
 Next, we can load the prior knowledge interactions, composed by kinase-target relationships
 
 ```{r}
+uniprot_kinases <- OmnipathR::import_omnipath_annotations(resources = "UniProt_keyword") %>%
+  dplyr::filter(value == "Kinase" & !grepl("COMPLEX", uniprot)) %>%
+  distinct() %>%
+  pull(genesymbol) %>%
+  unique()
 omnipath_ptm <- OmnipathR::get_signed_ptms() %>%
   dplyr::filter(modification %in% c("dephosphorylation","phosphorylation")) %>%
+  dplyr::filter(!(stringr::str_detect(sources, "ProtMapper") & n_resources == 1)) %>%
   dplyr::mutate(p_site = paste0(substrate_genesymbol, "_", residue_type, residue_offset),
                 mor = ifelse(modification == "phosphorylation", 1, -1)) %>%
   dplyr::transmute(p_site, enzyme_genesymbol, mor) %>%
-  as.data.frame()
+  dplyr::filter(enzyme_genesymbol %in% uniprot_kinases)
 
 omnipath_ptm$likelihood <- 1
 
